@@ -25,6 +25,7 @@ body {
     position: relative;
     z-index: 10;
     width: 300px;
+    /* Removed card-wide backgrounds to let the about-section sit on the fog */
 }
 
 .profile-header {
@@ -68,6 +69,7 @@ body {
     background: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-top: none;
+    border-radius: 0 0 8px 8px; /* Added: This closes the card visual here */
     padding: 10px;
     box-sizing: border-box;
     display: flex;
@@ -107,8 +109,12 @@ body {
     box-shadow: 0 0 8px #fff;
 }
 
+/* Updated Section Below */
 .about-section {
     margin-top: 24px;
+    padding: 0 10px; /* Aligns text with the content above */
+    background: none; /* Ensures no card background is inherited */
+    border: none;
 }
 
 h2 {
