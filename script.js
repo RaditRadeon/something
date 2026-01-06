@@ -4,19 +4,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const widget = document.querySelector(".music-widget");
     const trackName = document.getElementById("track-name");
 
-    audio.volume = 0.5;
+    audio.volume = 0.6;
+
+    audio.addEventListener('error', () => {
+        trackName.textContent = "could not find profilemusic.mp3";
+    });
 
     playBtn.addEventListener("click", () => {
         if (audio.paused) {
-            audio.play();
-            playBtn.textContent = "pause";
-            widget.classList.add("playing");
-            trackName.style.opacity = "1";
+            audio.play().then(() => {
+                playBtn.textContent = "pause";
+                widget.classList.add("playing");
+            }).catch(() => {
+                trackName.textContent = "playback error";
+            });
         } else {
             audio.pause();
             playBtn.textContent = "play";
             widget.classList.remove("playing");
-            trackName.style.opacity = "0.5";
         }
     });
 });
