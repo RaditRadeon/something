@@ -7,10 +7,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     audio.volume = 0.6;
 
-    fetch('https://api.countapi.xyz/hit/radit-profile/visits')
+    fetch('https://api.counterapi.dev/v1/radit/profile/up')
         .then(res => res.json())
         .then(data => {
-            viewCount.textContent = data.value;
+            viewCount.textContent = data.count;
         })
         .catch(() => {
             viewCount.textContent = "error";
