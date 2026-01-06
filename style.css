@@ -2,28 +2,30 @@ body {
     background-color: #000;
     color: #fff;
     margin: 0;
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    font-family: sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     overflow: hidden;
 }
 
 .fog-container {
     position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.04), transparent 60%);
-    filter: blur(40px);
-    pointer-events: none;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.05), transparent 70%);
+    filter: blur(50px);
+    z-index: 0;
 }
 
 .card {
     position: relative;
-    z-index: 2;
+    z-index: 10;
     width: 300px;
-    text-align: left;
 }
 
 .profile-header {
@@ -31,53 +33,61 @@ body {
     height: 96px;
     display: flex;
     align-items: center;
-    gap: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.02);
-    border-radius: 4px;
+    gap: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
     padding: 10px;
     box-sizing: border-box;
+    backdrop-filter: blur(5px);
 }
 
 .pfp {
     width: 76px;
     height: 76px;
     object-fit: cover;
-    border-radius: 2px;
+    border-radius: 6px;
+    /* Remove grayscale if you want original colors */
     filter: grayscale(1);
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+    transition: filter 0.3s ease;
+}
+
+.pfp:hover {
+    filter: grayscale(0);
 }
 
 .title-group h1 {
-    font-size: 1rem;
+    font-size: 1.1rem;
     margin: 0;
-    letter-spacing: 2px;
+    font-weight: 500;
+    letter-spacing: 1px;
     text-transform: lowercase;
 }
 
 .desc {
     font-size: 0.7rem;
-    margin: 5px 0 0 0;
-    opacity: 0.5;
+    margin: 4px 0 0 0;
+    opacity: 0.4;
     text-transform: lowercase;
 }
 
 .about-section {
-    margin-top: 20px;
-    padding-left: 5px;
+    margin-top: 24px;
+    padding: 0 4px;
 }
 
 h2 {
-    font-size: 0.65rem;
-    letter-spacing: 1px;
+    font-size: 0.6rem;
     text-transform: lowercase;
+    letter-spacing: 2px;
     opacity: 0.3;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
 }
 
 .about-section p {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     margin: 0;
-    opacity: 0.7;
+    opacity: 0.6;
+    line-height: 1.5;
     text-transform: lowercase;
 }
