@@ -3,18 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const playBtn = document.getElementById("play-btn");
     const widget = document.querySelector(".music-widget");
     const trackName = document.getElementById("track-name");
-    const viewCount = document.getElementById("view-count");
 
     audio.volume = 0.6;
-
-    fetch('https://api.counterapi.dev/v1/radit/profile/up')
-        .then(res => res.json())
-        .then(data => {
-            viewCount.textContent = data.count;
-        })
-        .catch(() => {
-            viewCount.textContent = "error";
-        });
 
     audio.addEventListener('error', () => {
         trackName.textContent = "could not find profilemusic.mp3";
@@ -24,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (audio.paused) {
             audio.play().then(() => {
                 playBtn.textContent = "pause";
+                playBtn.setAttribute('aria-pressed','true');
                 widget.classList.add("playing");
             }).catch(() => {
                 trackName.textContent = "playback error";
@@ -31,7 +22,15 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
             audio.pause();
             playBtn.textContent = "play";
+            playBtn.setAttribute('aria-pressed','false');
             widget.classList.remove("playing");
+        }
+    });
+
+    playBtn.addEventListener('keydown', (e) => {
+        if (e.code === 'Space'){
+            e.preventDefault();
+            playBtn.click();
         }
     });
 });
