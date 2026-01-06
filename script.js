@@ -3,8 +3,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const playBtn = document.getElementById("play-btn");
     const widget = document.querySelector(".music-widget");
     const trackName = document.getElementById("track-name");
+    const viewCount = document.getElementById("view-count");
 
     audio.volume = 0.6;
+
+    fetch('https://api.countapi.xyz/hit/radit-profile/visits')
+        .then(res => res.json())
+        .then(data => {
+            viewCount.textContent = data.value;
+        })
+        .catch(() => {
+            viewCount.textContent = "error";
+        });
 
     audio.addEventListener('error', () => {
         trackName.textContent = "could not find profilemusic.mp3";
