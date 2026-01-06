@@ -4,38 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>radit</title>
-    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="fog-container"></div>
+    <div class="fog-container" aria-hidden="true"></div>
     
     <audio id="audio-player" loop>
         <source src="./profilemusic.mp3" type="audio/mpeg">
     </audio>
 
-    <div class="card">
+    <div class="card" role="region" aria-label="Profile card">
         <div class="profile-header">
-            <img src="./avatar.png" alt="radit" class="pfp">
+            <img src="./avatar.png" alt="radit avatar" class="pfp">
             <div class="title-group">
                 <h1>radit</h1>
-                <p class="desc">views: <span id="view-count">...</span> — this is description, yeah i guess</p>
+                <p class="desc">— this is description, yeah i guess</p>
             </div>
         </div>
 
-        <div class="music-widget">
+        <div class="music-widget" aria-live="polite">
             <div class="status-dot" id="status-dot"></div>
             <p id="track-name">profile-MUSIC</p>
-            <button id="play-btn">play</button>
+            <button id="play-btn" aria-pressed="false">play</button>
         </div>
         
         <div class="about-section">
             <h2>about me</h2>
             <p>sometimes i wondering how it felt like to be energetic</p>
-            
-            <div class="socials">
-                <a href="https://www.instagram.com/msinfo32.exe" target="_blank" class="neon-icon">
+
+            <div class="socials" id="socials">
+                <a href="https://www.instagram.com/msinfo32.exe" target="_blank" rel="noopener noreferrer" class="neon-icon" aria-label="Open Instagram in new tab">
                     <span class="material-icons">camera_alt</span>
                 </a>
             </div>
