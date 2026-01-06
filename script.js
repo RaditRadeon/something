@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (audio.paused) {
             audio.play().then(() => {
                 playBtn.textContent = "pause";
-                playBtn.setAttribute('aria-pressed','true');
                 widget.classList.add("playing");
             }).catch(() => {
                 trackName.textContent = "playback error";
@@ -22,15 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
             audio.pause();
             playBtn.textContent = "play";
-            playBtn.setAttribute('aria-pressed','false');
             widget.classList.remove("playing");
-        }
-    });
-
-    playBtn.addEventListener('keydown', (e) => {
-        if (e.code === 'Space'){
-            e.preventDefault();
-            playBtn.click();
         }
     });
 });
