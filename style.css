@@ -25,7 +25,6 @@ body {
     position: relative;
     z-index: 10;
     width: 300px;
-    /* Removed card-wide backgrounds to let the about-section sit on the fog */
 }
 
 .profile-header {
@@ -36,10 +35,16 @@ body {
     gap: 16px;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 8px 8px 0 0;
+    border-radius: 12px 12px 0 0;
     padding: 10px;
     box-sizing: border-box;
     backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+}
+
+.profile-header:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.12);
 }
 
 .pfp {
@@ -48,6 +53,12 @@ body {
     object-fit: cover;
     border-radius: 6px;
     filter: grayscale(1);
+    transition: all 0.3s ease;
+}
+
+.pfp:hover {
+    filter: grayscale(0.5);
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.1);
 }
 
 .title-group h1 {
@@ -55,6 +66,18 @@ body {
     margin: 0;
     letter-spacing: 1px;
     text-transform: lowercase;
+}
+
+.glowing-name {
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.4), 
+                 0 0 20px rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.glowing-name:hover {
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 
+                 0 0 25px rgba(255, 255, 255, 0.3);
 }
 
 .desc {
@@ -66,55 +89,128 @@ body {
 
 .music-widget {
     width: 300px;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+    border:  1px solid rgba(255, 255, 255, 0.08);
     border-top: none;
-    border-radius: 0 0 8px 8px; /* Added: This closes the card visual here */
-    padding: 10px;
+    border-radius: 0 0 12px 12px;
+    padding: 0;
     box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
+    overflow: hidden;
 }
 
-#track-name {
-    font-size: 0.7rem;
-    opacity: 0.5;
-    margin: 0;
-    text-transform: lowercase;
-    flex-grow: 1;
-    padding-left: 10px;
+.music-widget:hover {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+    border-color: rgba(255, 255, 255, 0.12);
 }
 
-#play-btn {
-    background: none;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: white;
-    font-size: 0.65rem;
-    padding: 4px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    text-transform: lowercase;
+.widget-content {
+    width: 100%;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.widget-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
 .status-dot {
     width: 6px;
     height: 6px;
-    background-color: #333;
+    background-color:  #333;
     border-radius: 50%;
+    transition: all 0.3s ease;
 }
 
 .playing .status-dot {
     background-color: #fff;
     box-shadow: 0 0 8px #fff;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 0 8px #fff;
+    }
+    50% {
+        box-shadow: 0 0 15px #fff;
+    }
+}
+
+.status-text {
+    font-size: 0.6rem;
+    opacity: 0.4;
+    text-transform: lowercase;
+    letter-spacing: 0.5px;
+}
+
+#track-name {
+    font-size: 0.8rem;
+    opacity: 0.7;
+    margin: 0;
+    text-transform: lowercase;
+    transition: all 0.3s ease;
+}
+
+.music-widget:hover #track-name {
+    opacity:  0.9;
+}
+
+.play-button {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    width: 36px;
+    height: 36px;
+    border-radius:  50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    font-size: 0.5rem;
+    flex-shrink: 0;
+}
+
+.play-button:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.1);
+    transform: scale(1.05);
+}
+
+.play-button:active {
+    transform: scale(0.95);
+}
+
+.play-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Updated Section Below */
 .about-section {
-    margin-top: 24px;
-    padding: 0 10px; /* Aligns text with the content above */
-    background: none; /* Ensures no card background is inherited */
-    border: none;
+    margin-top:  24px;
+    padding:  0 10px;
+    background: none;
+    border:  none;
 }
 
 h2 {
@@ -130,4 +226,5 @@ h2 {
     margin: 0;
     opacity: 0.6;
     text-transform: lowercase;
+    line-height: 1.4;
 }
