@@ -3,10 +3,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const playBtn = document.getElementById("play-btn");
     const widget = document.querySelector(". music-widget");
     const trackName = document.getElementById("track-name");
-    const playIcon = document.querySelector(".play-icon");
 
-    if (! audio || !playBtn || !widget || ! trackName) {
-        console.error("required elements not found");
+    if (! audio || !playBtn || !widget || !trackName) {
+        console.error("Required elements not found");
         return;
     }
 
@@ -21,12 +20,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     playBtn.addEventListener("click", (e) => {
         e.preventDefault();
+        e.stopPropagation();
         
         if (audio.paused) {
             audio.play().then(() => {
                 updateButtonState();
             }).catch((error) => {
-                console.error("playback error:", error);
+                console. error("Playback error:", error);
                 trackName.textContent = "playback error";
             });
         } else {
@@ -36,25 +36,34 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Update button state when audio plays/pauses
-    audio.addEventListener('play', updateButtonState);
+    audio. addEventListener('play', updateButtonState);
     audio.addEventListener('pause', updateButtonState);
 
     function updateButtonState() {
+        const playIcon = playBtn.querySelector('.play-icon');
+        const pauseIcon = playBtn.querySelector('.pause-icon');
+        
         if (audio.paused) {
             widget.classList.remove("playing");
-            playBtn.setAttribute('aria-label', 'Play music');
+            playBtn. setAttribute('aria-label', 'Play music');
+            if (playIcon) playIcon.style.display = 'block';
+            if (pauseIcon) pauseIcon.style.display = 'none';
         } else {
             widget.classList.add("playing");
             playBtn.setAttribute('aria-label', 'Pause music');
+            if (playIcon) playIcon.style.display = 'none';
+            if (pauseIcon) pauseIcon.style.display = 'block';
         }
     }
 
     // Mobile touch optimization
-    playBtn.addEventListener('touchstart', function() {
-        this.style.transform = 'scale(0.95)';
+    playBtn.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        this.style.opacity = '0.8';
     });
 
-    playBtn.addEventListener('touchend', function() {
-        this.style.transform = '';
+    playBtn.addEventListener('touchend', function(e) {
+        e.preventDefault();
+        this.style.opacity = '1';
     });
 });
