@@ -71,21 +71,6 @@ body {
   transition: text-shadow .2s;
 }
 
-/* subtle pulse so it isn't too intense */
-@keyframes subtle-glow {
-  0%,100% {
-    text-shadow:
-      0 0 6px rgba(255,255,255,0.45),
-      0 0 14px rgba(255,255,255,0.18);
-  }
-  50% {
-    text-shadow:
-      0 0 8px rgba(255,255,255,0.55),
-      0 0 18px rgba(255,255,255,0.22);
-  }
-}
-.glowing-name { animation: subtle-glow 3.5s ease-in-out infinite; }
-
 .glowing-name:hover {
   text-shadow:
     0 0 10px rgba(255,255,255,0.6),
@@ -171,9 +156,6 @@ body {
 
 .play-button:active { transform: scale(.95); }
 .play-button:focus { outline: none; box-shadow: 0 0 12px rgba(255,255,255,0.12); }
-
-/* ensure clicks/taps hit the button, not the SVG */
-.play-button svg { pointer-events: none; }
 
 .icon { width: 18px; height: 18px; display: block; transition: opacity .12s; }
 
