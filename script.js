@@ -1,69 +1,50 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const audio = document.getElementById("audio-player");
-    const playBtn = document.getElementById("play-btn");
-    const widget = document.querySelector(". music-widget");
-    const trackName = document.getElementById("track-name");
+document.addEventListener('DOMContentLoaded', () => {
+  const audio = document.getElementById('audio-player');
+  const playBtn = document.getElementById('play-btn');
+  const widget = document.getElementById('music-widget');
+  const trackName = document.getElementById('track-name');
 
-    if (! audio || !playBtn || !widget || !trackName) {
-        console.error("Required elements not found");
-        return;
+  if (!audio || !playBtn || !widget || !trackName) return;
+
+  // 1. Set volume (lower is usually better for background)
+  audio.volume = 0.5;
+
+  // 2. Main Play/Pause Logic
+  async function togglePlayback() {
+    // If audio is paused, we try to play
+    if (audio.paused) {
+      try {
+        await audio.play();
+        widget.classList.add('playing');
+        playBtn.setAttribute('aria-label', 'Pause music');
+      } catch (err) {
+        console.error('Playback failed:', err);
+        // Reset UI if play fails (e.g. file not found)
+        widget.classList.remove('playing');
+        playBtn.setAttribute('aria-label', 'Play music');
+      }
+    } 
+    // If audio is playing, we pause
+    else {
+      audio.pause();
+      widget.classList.remove('playing');
+      playBtn.setAttribute('aria-label', 'Play music');
     }
+  }
 
-    audio.volume = 0.6;
+  // 3. Attach Click Listener
+  playBtn.addEventListener('click', (e) => {
+    // Prevent default to stop weird mobile zoom/focus behaviors
+    e.preventDefault(); 
+    togglePlayback();
+  });
 
-    audio.addEventListener('error', () => {
-        trackName.textContent = "could not find profilemusic.mp3";
-    });
+  // 4. Update UI if the song ends automatically
+  audio.addEventListener('ended', () => {
+    widget.classList.remove('playing');
+    playBtn.setAttribute('aria-label', 'Play music');
+  });
 
-    // Initialize button state
-    updateButtonState();
-
-    playBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        
-        if (audio.paused) {
-            audio.play().then(() => {
-                updateButtonState();
-            }).catch((error) => {
-                console. error("Playback error:", error);
-                trackName.textContent = "playback error";
-            });
-        } else {
-            audio.pause();
-            updateButtonState();
-        }
-    });
-
-    // Update button state when audio plays/pauses
-    audio. addEventListener('play', updateButtonState);
-    audio.addEventListener('pause', updateButtonState);
-
-    function updateButtonState() {
-        const playIcon = playBtn.querySelector('.play-icon');
-        const pauseIcon = playBtn.querySelector('.pause-icon');
-        
-        if (audio.paused) {
-            widget.classList.remove("playing");
-            playBtn. setAttribute('aria-label', 'Play music');
-            if (playIcon) playIcon.style.display = 'block';
-            if (pauseIcon) pauseIcon.style.display = 'none';
-        } else {
-            widget.classList.add("playing");
-            playBtn.setAttribute('aria-label', 'Pause music');
-            if (playIcon) playIcon.style.display = 'none';
-            if (pauseIcon) pauseIcon.style.display = 'block';
-        }
-    }
-
-    // Mobile touch optimization
-    playBtn.addEventListener('touchstart', function(e) {
-        e.preventDefault();
-        this.style.opacity = '0.8';
-    });
-
-    playBtn.addEventListener('touchend', function(e) {
-        e.preventDefault();
-        this.style.opacity = '1';
-    });
+  // Note: We removed the "filename parsing" block so your 
+  // HTML text (profile-music) stays exactly how you wrote it.
 });
