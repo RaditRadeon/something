@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<! DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -14,21 +14,32 @@
         <source src="./profilemusic.mp3" type="audio/mpeg">
     </audio>
 
-<div class="card">
+    <div class="card">
         <div class="profile-header">
             <img src="./avatar.png" alt="radit" class="pfp">
             <div class="title-group">
-                <h1>radit</h1>
+                <h1 class="glowing-name">radit</h1>
                 <p class="desc">description iwguess</p>
             </div>
         </div>
 
         <div class="music-widget">
-            <div class="status-dot"></div>
-            <p id="track-name">profile-MUSIC</p>
-            <button id="play-btn">play</button>
+            <div class="widget-content">
+                <div class="widget-info">
+                    <div class="status-indicator">
+                        <div class="status-dot"></div>
+                        <span class="status-text">now playing</span>
+                    </div>
+                    <p id="track-name">profile-music</p>
+                </div>
+                <button id="play-btn" class="play-button">
+                    <span class="play-icon">▶</span>
+                </button>
+            </div>
         </div>
-    </div> <div class="about-section">
+    </div>
+
+    <div class="about-section">
         <h2>about me</h2>
         <p>i keep wondering what it felt like to become energetic</p>
     </div>
