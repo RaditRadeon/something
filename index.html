@@ -1,4 +1,4 @@
-<! DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -33,9 +33,13 @@
                         </div>
                         <p id="track-name">profile-music</p>
                     </div>
-                    <button id="play-btn" class="play-button" aria-label="Play/Pause music">
-                        <svg class="play-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                    <button id="play-btn" class="play-button" type="button">
+                        <svg class="play-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg>
+                        <svg class="pause-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                            <rect x="6" y="3" width="4" height="18"></rect>
+                            <rect x="14" y="3" width="4" height="18"></rect>
                         </svg>
                     </button>
                 </div>
@@ -48,6 +52,6 @@
         </div>
     </div>
 
-    <script src="script. js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
