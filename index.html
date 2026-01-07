@@ -1,57 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>radit</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>radit</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div class="fog-container" aria-hidden="true"></div>
 
-    <div class="fog-container"></div>
-    
-    <audio id="audio-player" loop>
-        <source src="./profilemusic.mp3" type="audio/mpeg">
-    </audio>
+  <audio id="audio-player" loop>
+    <source src="./profilemusic.mp3" type="audio/mpeg" />
+  </audio>
 
-    <div class="container">
-        <div class="card">
-            <div class="profile-header">
-                <img src="./avatar.png" alt="radit" class="pfp">
-                <div class="title-group">
-                    <h1 class="glowing-name">radit</h1>
-                    <p class="desc">description iwguess</p>
-                </div>
-            </div>
-
-            <div class="music-widget">
-                <div class="widget-content">
-                    <div class="widget-info">
-                        <div class="status-indicator">
-                            <div class="status-dot"></div>
-                            <span class="status-text">now playing</span>
-                        </div>
-                        <p id="track-name">profile-music</p>
-                    </div>
-                    <button id="play-btn" class="play-button" type="button">
-                        <svg class="play-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                        </svg>
-                        <svg class="pause-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="display: none;">
-                            <rect x="6" y="3" width="4" height="18"></rect>
-                            <rect x="14" y="3" width="4" height="18"></rect>
-                        </svg>
-                    </button>
-                </div>
-            </div>
+  <div class="container">
+    <div class="card">
+      <div class="profile-header">
+        <img src="./avatar.png" alt="radit" class="pfp" />
+        <div class="title-group">
+          <h1 class="glowing-name">radit</h1>
+          <p class="desc">description iwguess</p>
         </div>
+      </div>
 
-        <div class="about-section">
-            <h2>about me</h2>
-            <p>i keep wondering what it felt like to become energetic</p>
+      <div class="music-widget" id="music-widget">
+        <div class="widget-content">
+          <div class="widget-info">
+            <div class="status-indicator">
+              <div class="status-dot" aria-hidden="true"></div>
+              <span class="status-text">now playing</span>
+            </div>
+            <p id="track-name">profile-music</p>
+          </div>
+
+          <button id="play-btn" class="play-button" aria-label="Play music" type="button">
+            <!-- Play icon -->
+            <svg class="icon play-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+
+            <!-- Pause icon (hidden by default via CSS) -->
+            <svg class="icon pause-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="6" y="4" width="4" height="16"></rect>
+              <rect x="14" y="4" width="4" height="16"></rect>
+            </svg>
+          </button>
         </div>
+      </div>
     </div>
 
-    <script src="script.js"></script>
+    <div class="about-section">
+      <h2>about me</h2>
+      <p>i keep wondering what it felt like to become energetic</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
