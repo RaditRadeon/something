@@ -1,1 +1,207 @@
-* { box-sizing: border-box; } body { background: #000; color: #fff; margin: 0; padding: 16px; display: flex; justify-content: center; align-items: center; min-height: 100vh; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; overflow-x: hidden; user-select: none; } .fog-container { position: fixed; inset: 0; background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.05), transparent 70%); filter: blur(50px); z-index: 1; } .container { position: relative; z-index: 10; width: 100%; max-width: 340px; display: flex; flex-direction: column; align-items: center; } .card { width: 100%; max-width: 300px; } .profile-header { width: 100%; min-height: 88px; display: flex; gap: 12px; align-items: center; padding: 12px; border-radius: 12px 12px 0 0; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(5px); transition: background .2s, border-color .2s; } .pfp { width: 76px; height: 76px; border-radius: 6px; object-fit: cover; filter: grayscale(1); transition: filter .2s, box-shadow .2s; } .title-group { flex: 1; min-width: 0; } .glowing-name { margin: 0; font-size: 1.05rem; letter-spacing: 1px; text-transform: lowercase; color: #fff; text-shadow: 0 0 6px rgba(255,255,255,0.45), 0 0 14px rgba(255,255,255,0.18); transition: text-shadow .2s; } .glowing-name:hover { text-shadow: 0 0 10px rgba(255,255,255,0.6), 0 0 20px rgba(255,255,255,0.25); } .desc { margin: 4px 0 0 0; font-size: 0.7rem; opacity: 0.45; text-transform: lowercase; } .music-widget { width: 100%; background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)); border: 1px solid rgba(255,255,255,0.08); border-top: none; border-radius: 0 0 12px 12px; backdrop-filter: blur(6px); overflow: hidden; transition: border-color .2s, background .2s; } .widget-content { width: 100%; padding: 12px; display: flex; gap: 12px; align-items: center; justify-content: space-between; } .widget-info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; } .status-indicator { display: flex; gap: 8px; align-items: center; } .status-dot { width: 6px; height: 6px; border-radius: 50%; background: #333; flex-shrink: 0; } .music-widget.playing .status-dot { background: #fff; box-shadow: 0 0 8px #fff; animation: pulse 1.6s ease-in-out infinite; } @keyframes pulse { 0%,100% { box-shadow: 0 0 8px #fff; } 50% { box-shadow: 0 0 16px #fff; } } .status-text { font-size: 0.6rem; opacity: 0.45; text-transform: lowercase; white-space: nowrap; } #track-name { font-size: 0.82rem; opacity: 0.75; margin: 0; text-transform: lowercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } .play-button { width: 40px; height: 40px; min-width: 40px; min-height: 40px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.08); display: inline-flex; align-items: center; justify-content: center; color: #fff; cursor: pointer; transition: transform .12s ease, box-shadow .12s ease, background .12s; padding: 0; } .play-button:active { transform: scale(.95); } .play-button:focus { outline: none; box-shadow: 0 0 12px rgba(255,255,255,0.12); } .icon { width: 18px; height: 18px; display: block; transition: opacity .12s; } .pause-icon { display: none; } .music-widget.playing .play-icon { display: none; } .music-widget.playing .pause-icon { display: block; } .about-section { margin-top: 20px; width: 100%; max-width: 300px; padding: 14px; border-radius: 12px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); text-align: center; backdrop-filter: blur(5px); } @media (max-width: 480px) { .pfp { width: 64px; height: 64px; } .play-button { width: 38px; height: 38px; } .glowing-name { font-size: 1rem; } .widget-content { padding: 10px; gap: 8px; } #track-name { font-size: 0.75rem; } } /* ... keep all your existing CSS above this ... */ /* Social Links Container */ .social-links { display: flex; gap: 12px; margin-top: 14px; } /* Base Social Link Style */ .social-link { display: inline-flex; align-items: center; justify-content: center; color: rgba(255, 255, 255, 0.6); text-decoration: none; transition: all 0.3s ease; } /* SVG Icon Size */ .social-icon { width: 22px; height: 22px; display: block; } /* Instagram Glow Effect on Hover */ .social-link.instagram:hover { color: #fff; transform: translateY(-2px) scale(1.05); filter: drop-shadow(0 0 5px rgba(225, 48, 108, 0.9)) drop-shadow(0 0 10px rgba(193, 53, 132, 0.7)) drop-shadow(0 0 15px rgba(131, 58, 180, 0.5)); }
+* { box-sizing: border-box; }
+
+body {
+  background: #000;
+  color: #fff;
+  margin: 0;
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+  user-select: none;
+}
+
+.fog-container {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.05), transparent 70%);
+  filter: blur(50px);
+  z-index: 1;
+}
+
+.container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 340px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card { width: 100%; max-width: 300px; }
+
+.profile-header {
+  width: 100%;
+  min-height: 88px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 12px;
+  border-radius: 12px 12px 0 0;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(5px);
+  transition: background .2s, border-color .2s;
+}
+
+.pfp {
+  width: 76px;
+  height: 76px;
+  border-radius: 6px;
+  object-fit: cover;
+  filter: grayscale(1);
+  transition: filter .2s, box-shadow .2s;
+}
+
+.title-group { flex: 1; min-width: 0; }
+
+.glowing-name {
+  margin: 0;
+  font-size: 1.05rem;
+  letter-spacing: 1px;
+  text-transform: lowercase;
+  color: #fff;
+  text-shadow:
+    0 0 6px rgba(255,255,255,0.45),
+    0 0 14px rgba(255,255,255,0.18);
+  transition: text-shadow .2s;
+}
+
+/* subtle pulse so it isn't too intense */
+@keyframes subtle-glow {
+  0%,100% {
+    text-shadow:
+      0 0 6px rgba(255,255,255,0.45),
+      0 0 14px rgba(255,255,255,0.18);
+  }
+  50% {
+    text-shadow:
+      0 0 8px rgba(255,255,255,0.55),
+      0 0 18px rgba(255,255,255,0.22);
+  }
+}
+.glowing-name { animation: subtle-glow 3.5s ease-in-out infinite; }
+
+.glowing-name:hover {
+  text-shadow:
+    0 0 10px rgba(255,255,255,0.6),
+    0 0 20px rgba(255,255,255,0.25);
+}
+
+.desc {
+  margin: 4px 0 0 0;
+  font-size: 0.7rem;
+  opacity: 0.45;
+  text-transform: lowercase;
+}
+
+/* Music widget */
+.music-widget {
+  width: 100%;
+  background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.08);
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  backdrop-filter: blur(6px);
+  overflow: hidden;
+  transition: border-color .2s, background .2s;
+}
+
+.widget-content {
+  width: 100%;
+  padding: 12px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.widget-info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+
+.status-indicator { display: flex; gap: 8px; align-items: center; }
+
+.status-dot {
+  width: 6px; height: 6px; border-radius: 50%; background: #333; flex-shrink: 0;
+}
+
+.music-widget.playing .status-dot {
+  background: #fff;
+  box-shadow: 0 0 8px #fff;
+  animation: pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,100% { box-shadow: 0 0 8px #fff; }
+  50% { box-shadow: 0 0 16px #fff; }
+}
+
+.status-text { font-size: 0.6rem; opacity: 0.45; text-transform: lowercase; white-space: nowrap; }
+
+#track-name {
+  font-size: 0.82rem;
+  opacity: 0.75;
+  margin: 0;
+  text-transform: lowercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Play/pause button */
+.play-button {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.08);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  cursor: pointer;
+  transition: transform .12s ease, box-shadow .12s ease, background .12s;
+  padding: 0;
+}
+
+.play-button:active { transform: scale(.95); }
+.play-button:focus { outline: none; box-shadow: 0 0 12px rgba(255,255,255,0.12); }
+
+/* ensure clicks/taps hit the button, not the SVG */
+.play-button svg { pointer-events: none; }
+
+.icon { width: 18px; height: 18px; display: block; transition: opacity .12s; }
+
+/* hide pause icon by default; show via .playing on widget */
+.pause-icon { display: none; }
+
+/* when widget is playing - swap icons */
+.music-widget.playing .play-icon { display: none; }
+.music-widget.playing .pause-icon { display: block; }
+
+/* About section bottom */
+.about-section {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 300px;
+  padding: 14px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.08);
+  text-align: center;
+  backdrop-filter: blur(5px);
+}
+
+/* Responsive tweaks */
+@media (max-width: 480px) {
+  .pfp { width: 64px; height: 64px; }
+  .play-button { width: 38px; height: 38px; }
+  .glowing-name { font-size: 1rem; }
+  .widget-content { padding: 10px; gap: 8px; }
+  #track-name { font-size: 0.75rem; }
+}
