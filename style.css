@@ -10,10 +10,11 @@ body {
   align-items: center;
   min-height: 100vh;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  overflow-x: hidden;
+  overflow: hidden;
   user-select: none;
 }
 
+/* Background gradient blur */
 .fog-container {
   position: fixed;
   inset: 0;
@@ -22,6 +23,7 @@ body {
   z-index: 1;
 }
 
+/* Main content wrapper */
 .container {
   position: relative;
   z-index: 10;
@@ -65,31 +67,13 @@ body {
   letter-spacing: 1px;
   text-transform: lowercase;
   color: #fff;
-  text-shadow:
-    0 0 6px rgba(255,255,255,0.45),
-    0 0 14px rgba(255,255,255,0.18);
-  transition: text-shadow .2s;
+  text-shadow: 0 0 6px rgba(255,255,255,0.45), 0 0 14px rgba(255,255,255,0.18);
+  animation: subtle-glow 3.5s ease-in-out infinite;
 }
 
-/* subtle pulse so it isn't too intense */
 @keyframes subtle-glow {
-  0%,100% {
-    text-shadow:
-      0 0 6px rgba(255,255,255,0.45),
-      0 0 14px rgba(255,255,255,0.18);
-  }
-  50% {
-    text-shadow:
-      0 0 8px rgba(255,255,255,0.55),
-      0 0 18px rgba(255,255,255,0.22);
-  }
-}
-.glowing-name { animation: subtle-glow 3.5s ease-in-out infinite; }
-
-.glowing-name:hover {
-  text-shadow:
-    0 0 10px rgba(255,255,255,0.6),
-    0 0 20px rgba(255,255,255,0.25);
+  0%, 100% { text-shadow: 0 0 6px rgba(255,255,255,0.45), 0 0 14px rgba(255,255,255,0.18); }
+  50% { text-shadow: 0 0 8px rgba(255,255,255,0.55), 0 0 18px rgba(255,255,255,0.22); }
 }
 
 .desc {
@@ -108,7 +92,6 @@ body {
   border-radius: 0 0 12px 12px;
   backdrop-filter: blur(6px);
   overflow: hidden;
-  transition: border-color .2s, background .2s;
 }
 
 .widget-content {
@@ -126,6 +109,7 @@ body {
 
 .status-dot {
   width: 6px; height: 6px; border-radius: 50%; background: #333; flex-shrink: 0;
+  transition: background 0.3s;
 }
 
 .music-widget.playing .status-dot {
@@ -135,11 +119,11 @@ body {
 }
 
 @keyframes pulse {
-  0%,100% { box-shadow: 0 0 8px #fff; }
-  50% { box-shadow: 0 0 16px #fff; }
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.7; }
 }
 
-.status-text { font-size: 0.6rem; opacity: 0.45; text-transform: lowercase; white-space: nowrap; }
+.status-text { font-size: 0.6rem; opacity: 0.45; text-transform: lowercase; }
 
 #track-name {
   font-size: 0.82rem;
@@ -156,35 +140,26 @@ body {
   width: 40px;
   height: 40px;
   min-width: 40px;
-  min-height: 40px;
   border-radius: 50%;
   border: 1.5px solid rgba(255,255,255,0.15);
   background: rgba(255,255,255,0.08);
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   color: #fff;
   cursor: pointer;
-  transition: transform .12s ease, box-shadow .12s ease, background .12s;
+  transition: all .2s;
   padding: 0;
 }
 
-.play-button:active { transform: scale(.95); }
-.play-button:focus { outline: none; box-shadow: 0 0 12px rgba(255,255,255,0.12); }
+.play-button:hover { background: rgba(255,255,255,0.15); }
+.play-button:active { transform: scale(0.9); }
 
-/* ensure clicks/taps hit the button, not the SVG */
-.play-button svg { pointer-events: none; }
-
-.icon { width: 18px; height: 18px; display: block; transition: opacity .12s; }
-
-/* hide pause icon by default; show via .playing on widget */
 .pause-icon { display: none; }
-
-/* when widget is playing - swap icons */
 .music-widget.playing .play-icon { display: none; }
 .music-widget.playing .pause-icon { display: block; }
 
-/* About section bottom */
+/* About section */
 .about-section {
   margin-top: 20px;
   width: 100%;
@@ -197,11 +172,40 @@ body {
   backdrop-filter: blur(5px);
 }
 
-/* Responsive tweaks */
+.about-section h2 {
+  font-size: 0.9rem;
+  margin: 0 0 8px 0;
+  opacity: 0.8;
+  font-weight: 500;
+}
+
+.about-section p {
+  font-size: 0.75rem;
+  margin: 0;
+  opacity: 0.5;
+  line-height: 1.4;
+}
+
+/* NEW: Bottom Left Image Styles */
+.bottom-left-image {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 60px; /* Adjust size as needed */
+  height: auto;
+  z-index: 100;
+  border: none;
+  pointer-events: none; /* User can't interact/drag it by accident */
+  opacity: 0.8;
+  transition: opacity 0.3s;
+}
+
+.bottom-left-image:hover {
+  opacity: 1;
+}
+
+/* Mobile Tweaks */
 @media (max-width: 480px) {
   .pfp { width: 64px; height: 64px; }
-  .play-button { width: 38px; height: 38px; }
-  .glowing-name { font-size: 1rem; }
-  .widget-content { padding: 10px; gap: 8px; }
-  #track-name { font-size: 0.75rem; }
+  .bottom-left-image { width: 45px; bottom: 15px; left: 15px; }
 }
