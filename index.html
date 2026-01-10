@@ -7,8 +7,10 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- Background effects -->
   <div class="fog-container" aria-hidden="true"></div>
 
+  <!-- Audio element -->
   <audio id="audio-player" loop preload="metadata">
     <source src="./profilemusic.mp3" type="audio/mpeg" />
   </audio>
@@ -39,7 +41,7 @@
               <polygon points="5 3 19 12 5 21 5 3"></polygon>
             </svg>
 
-            <!-- Pause icon (hidden by default via CSS) -->
+            <!-- Pause icon -->
             <svg class="icon pause-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <rect x="6" y="4" width="4" height="16"></rect>
               <rect x="14" y="4" width="4" height="16"></rect>
@@ -54,6 +56,9 @@
       <p>i keep wondering what it felt like to become energetic</p>
     </div>
   </div>
+
+  <!-- Bottom Left Image -->
+  <img src="something.webp" alt="" class="bottom-left-image" aria-hidden="true" onerror="this.style.display='none'">
 
   <script src="script.js"></script>
 </body>
