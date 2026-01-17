@@ -7,10 +7,8 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Background effects -->
   <div class="fog-container" aria-hidden="true"></div>
 
-  <!-- Audio element -->
   <audio id="audio-player" loop preload="metadata">
     <source src="./profilemusic.mp3" type="audio/mpeg" />
   </audio>
@@ -36,12 +34,9 @@
           </div>
 
           <button id="play-btn" class="play-button" aria-label="Play music" type="button">
-            <!-- Play icon -->
             <svg class="icon play-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <polygon points="5 3 19 12 5 21 5 3"></polygon>
             </svg>
-
-            <!-- Pause icon -->
             <svg class="icon pause-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <rect x="6" y="4" width="4" height="16"></rect>
               <rect x="14" y="4" width="4" height="16"></rect>
@@ -57,8 +52,29 @@
     </div>
   </div>
 
-  <!-- Bottom Left Image -->
   <img src="something.webp" alt="" class="bottom-left-image" aria-hidden="true" onerror="this.style.display='none'">
+
+  <button id="notepad-toggle" class="notepad-btn" aria-label="Open notepad">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+      <polyline points="14 2 14 8 20 8"></polyline>
+      <line x1="16" y1="13" x2="8" y2="13"></line>
+      <line x1="16" y1="17" x2="8" y2="17"></line>
+      <polyline points="10 9 9 9 8 9"></polyline>
+    </svg>
+  </button>
+
+  <div id="notepad-modal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span>notepad.txt</span>
+        <button id="close-notepad" class="close-btn">&times;</button>
+      </div>
+      <div id="notepad-content" class="modal-body">
+        loading plz wait
+      </div>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
