@@ -6,7 +6,7 @@
   <title>radit</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* Custom animations from original request that are complex in pure Tailwind utility classes */
+    /* Custom animations from original request */
     @keyframes subtle-glow {
       0%, 100% { text-shadow: 0 0 6px rgba(255,255,255,0.45), 0 0 14px rgba(255,255,255,0.18); }
       50% { text-shadow: 0 0 8px rgba(255,255,255,0.55), 0 0 18px rgba(255,255,255,0.22); }
@@ -50,8 +50,10 @@
   }
 }
 </script>
+<link rel="stylesheet" href="/index.css">
 </head>
-<body class="bg-black text-white min-h-screen overflow-hidden selection:bg-white/20">
-  <div id="root"></div>
+<body class="bg-black text-white min-h-screen overflow-hidden selection:bg-white/20 select-none flex justify-center items-center p-4 font-sans">
+  <div id="root" class="w-full max-w-[340px] flex flex-col items-center"></div>
+<script type="module" src="/index.tsx"></script>
 </body>
 </html>
