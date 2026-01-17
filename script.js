@@ -3,28 +3,27 @@ document.addEventListener('DOMContentLoaded', () => {
   const playBtn = document.getElementById('play-btn');
   const widget = document.getElementById('music-widget');
   const trackName = document.getElementById('track-name');
+  
+  const notepadBtn = document.getElementById('notepad-toggle');
+  const notepadModal = document.getElementById('notepad-modal');
+  const closeNotepad = document.getElementById('close-notepad');
+  const notepadContent = document.getElementById('notepad-content');
 
   if (!audio || !playBtn || !widget || !trackName) return;
 
-  // 1. Set volume (lower is usually better for background)
   audio.volume = 0.5;
 
-  // 2. Main Play/Pause Logic
   async function togglePlayback() {
-    // If audio is paused, we try to play
     if (audio.paused) {
       try {
         await audio.play();
         widget.classList.add('playing');
         playBtn.setAttribute('aria-label', 'Pause music');
       } catch (err) {
-        console.error('Playback failed:', err);
-        // Reset UI if play fails (e.g. file not found)
         widget.classList.remove('playing');
         playBtn.setAttribute('aria-label', 'Play music');
       }
     } 
-    // If audio is playing, we pause
     else {
       audio.pause();
       widget.classList.remove('playing');
@@ -32,19 +31,39 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 3. Attach Click Listener
   playBtn.addEventListener('click', (e) => {
-    // Prevent default to stop weird mobile zoom/focus behaviors
     e.preventDefault(); 
     togglePlayback();
   });
 
-  // 4. Update UI if the song ends automatically
   audio.addEventListener('ended', () => {
     widget.classList.remove('playing');
     playBtn.setAttribute('aria-label', 'Play music');
   });
 
-  // Note: We removed the "filename parsing" block so your 
-  // HTML text (profile-music) stays exactly how you wrote it.
+  async function loadNotepad() {
+    try {
+      const response = await fetch('notepad.txt');
+      if (!response.ok) throw new Error('File not found');
+      const text = await response.text();
+      notepadContent.textContent = text;
+    } catch (err) {
+      notepadContent.textContent = 'could not load notepad.txt';
+    }
+  }
+
+  notepadBtn.addEventListener('click', () => {
+    loadNotepad();
+    notepadModal.classList.add('active');
+  });
+
+  closeNotepad.addEventListener('click', () => {
+    notepadModal.classList.remove('active');
+  });
+
+  notepadModal.addEventListener('click', (e) => {
+    if (e.target === notepadModal) {
+      notepadModal.classList.remove('active');
+    }
+  });
 });
