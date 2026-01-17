@@ -142,7 +142,7 @@ export default function App() {
           <img 
             src="./avatar.png" 
             alt="radit" 
-            className="w-[76px] h-[76px] rounded-md object-cover grayscale transition-all duration-200 hover:grayscale-0"
+            className="w-[76px] h-[76px] max-[480px]:w-[64px] max-[480px]:h-[64px] rounded-md object-cover grayscale transition-all duration-200 hover:grayscale-0"
             onError={(e) => {
               // Fallback if image fails
               (e.target as HTMLImageElement).src = 'https://picsum.photos/76/76';
